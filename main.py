@@ -1,12 +1,13 @@
-from hub import light_matrix
-import runloop
+import force_sensor
+import motor
+from hub import port
 
-async def main():
-    # write your code here
-    await light_matrix.write("Hi!")
+while True:
+   # Store the force of the Force Sensor in a variable.
+   force = force_sensor.force(port.F)
 
-runloop.run(main())
+   # Print the variable to the Console.
+   print(force)
 
-# test comment
-# test comment 2
-# adding another comment
+   # Run the motor and use the variable to set the velocity.
+   motor.run(port.A, force)
